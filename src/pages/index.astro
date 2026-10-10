@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getPosts, getProjects } from '../utils';
+import { SITE } from '../consts';
 
 const posts = (await getPosts()).slice(0, 5);
 const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3);
@@ -17,8 +18,9 @@ const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
       building with LLMs. This is where I keep my writing and side projects.
     </p>
     <p class="small social">
-      <a href="https://github.com/abhijeetgurle">GitHub</a>
-      <a href="https://www.linkedin.com/in/abhijeet-gurle-7b1286162/">LinkedIn</a>
+      <a href={SITE.socials.github}>GitHub</a>
+      <a href={SITE.socials.linkedin}>LinkedIn</a>
+      <a href={SITE.socials.twitter}>X</a>
       <a href="/about">More about me →</a>
     </p>
   </section>
