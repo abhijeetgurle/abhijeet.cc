@@ -1,0 +1,93 @@
+:root {
+  --bg: #fdfcfa;
+  --fg: #1c1b19;
+  --muted: #6b6862;
+  --border: #e7e4de;
+  --accent: #c2410c;
+  --code-bg: #f4f2ee;
+  --max: 42rem;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #141413;
+  --fg: #ecebe8;
+  --muted: #9c9a94;
+  --border: #2c2b28;
+  --accent: #fb923c;
+  --code-bg: #1e1e1c;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+a { color: inherit; text-decoration-color: var(--border); text-underline-offset: 3px; }
+a:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+h1, h2, h3 { line-height: 1.25; font-weight: 600; letter-spacing: -0.015em; }
+h1 { font-size: 2rem; margin: 0 0 0.5rem; }
+h2 { font-size: 1.35rem; margin-top: 2.5rem; }
+h3 { font-size: 1.1rem; margin-top: 2rem; }
+
+.muted { color: var(--muted); }
+.small { font-size: 0.875rem; }
+
+/* Post body */
+.prose { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.75; }
+.prose h2, .prose h3 { font-family: var(--font-sans); }
+.prose img { max-width: 100%; height: auto; border-radius: 6px; }
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--border);
+  color: var(--muted);
+}
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+code { font-family: var(--font-mono); font-size: 0.85em; }
+:not(pre) > code { background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 4px; }
+pre {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+/* Shiki dual themes */
+:root[data-theme='dark'] .astro-code,
+:root[data-theme='dark'] .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+  margin-right: 0.6rem;
+}
+.tag::before { content: '#'; }

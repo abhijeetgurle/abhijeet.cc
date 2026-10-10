@@ -1,16 +1,40 @@
 ---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getPosts, getProjects } from '../utils';
+
+const posts = (await getPosts()).slice(0, 5);
+const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+  <section class="intro">
+    <h1>Hi, I'm Abhijeet.</h1>
+    <p class="muted">
+      I build software and write about what I learn. This is where I keep my essays, notes, and the
+      projects I'm working on.
+    </p>
+  </section>
+
+  <section>
+    <h2>Recent writing</h2>
+    <PostList posts={posts} />
+    <p class="small"><a href="/blog">All posts →</a></p>
+  </section>
+
+  {featured.length > 0 && (
+    <section>
+      <h2>Projects</h2>
+      <div class="grid">
+        {featured.map((project) => <ProjectCard project={project} />)}
+      </div>
+      <p class="small"><a href="/projects">All projects →</a></p>
+    </section>
+  )}
+</Base>
+
+<style>
+  .intro p { font-size: 1.15rem; margin: 0; }
+  .grid { display: grid; gap: 1rem; }
+</style>
