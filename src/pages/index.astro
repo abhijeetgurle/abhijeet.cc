@@ -4,7 +4,6 @@ import Section from '../components/Section.astro';
 import PostList from '../components/PostList.astro';
 import ProjectList from '../components/ProjectList.astro';
 import { getPosts, getProjects } from '../utils';
-import { SITE } from '../consts';
 
 const posts = (await getPosts()).slice(0, 5);
 const featured = (await getProjects()).filter((p) => p.data.featured);
@@ -13,7 +12,7 @@ const featured = (await getProjects()).filter((p) => p.data.featured);
 <Base>
   <section class="hero">
     <h1>Abhijeet Gurle</h1>
-    <p class="role">Software engineer at <a href="https://www.akto.io">Akto</a></p>
+    <p class="role">Software engineer</p>
     <p class="bio">
       I work mostly on backend systems and like learning things by building them from scratch.
       Lately that has meant building with LLMs.
@@ -28,21 +27,10 @@ const featured = (await getProjects()).filter((p) => p.data.featured);
     <ProjectList projects={featured} />
   </Section>
 
-  <Section title="Elsewhere">
-    <ul class="links">
-      <li><a href={SITE.socials.github}>GitHub<span aria-hidden="true"> ↗</span></a></li>
-      <li><a href={SITE.socials.twitter}>X<span aria-hidden="true"> ↗</span></a></li>
-      <li><a href={SITE.socials.linkedin}>LinkedIn<span aria-hidden="true"> ↗</span></a></li>
-    </ul>
-  </Section>
 </Base>
 
 <style>
-  .hero { margin-bottom: 4.5rem; }
+  .hero { padding-bottom: 3rem; }
   .role { margin: 0.25rem 0 0; color: var(--muted); }
-  .role a { color: var(--fg); }
-  .role a:hover { color: var(--accent); }
   .bio { margin: 1.5rem 0 0; max-width: 36rem; }
-  .links span { color: var(--faint); font-size: 0.85em; }
-  .links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 1.5rem; }
 </style>
