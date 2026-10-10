@@ -6,8 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Update this once a custom domain is set up.
-  site: 'https://abhijeet.pages.dev',
+  site: 'https://abhijeet.cc',
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
