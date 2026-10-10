@@ -45,5 +45,5 @@ const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
 <style>
   .intro p { font-size: 1.15rem; margin: 0; }
   .intro .social { display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.9rem; }
-  .grid { display: grid; gap: 1rem; }
+  .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
 </style>

@@ -5,7 +5,7 @@
   --border: #e7e4de;
   --accent: #c2410c;
   --code-bg: #f4f2ee;
-  --max: 42rem;
+  --max: 56rem;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Newsreader', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -39,7 +39,7 @@ body {
 .container {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 a { color: inherit; text-decoration-color: var(--border); text-underline-offset: 3px; }
