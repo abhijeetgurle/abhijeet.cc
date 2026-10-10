@@ -1,11 +1,11 @@
 export const SITE = {
-  title: 'Abhijeet',
-  description: 'Writing about software, projects, and things I learn along the way.',
-  author: 'Abhijeet',
+  title: 'Abhijeet Gurle',
+  description:
+    'Software engineer at Akto. Writing about backend systems, side projects, and things I learn along the way.',
+  author: 'Abhijeet Gurle',
   socials: {
-    github: 'https://github.com/',
-    linkedin: 'https://www.linkedin.com/',
-    email: 'mailto:hello@example.com',
+    github: 'https://github.com/abhijeetgurle',
+    linkedin: 'https://www.linkedin.com/in/abhijeet-gurle-7b1286162/',
   },
 };
 

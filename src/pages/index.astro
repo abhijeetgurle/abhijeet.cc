@@ -12,8 +12,14 @@ const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
   <section class="intro">
     <h1>Hi, I'm Abhijeet.</h1>
     <p class="muted">
-      I build software and write about what I learn. This is where I keep my essays, notes, and the
-      projects I'm working on.
+      I'm a software engineer at <a href="https://www.akto.io">Akto</a>, working mostly on backend
+      systems. I like learning things by building them from scratch, and lately that has meant
+      building with LLMs. This is where I keep my writing and side projects.
+    </p>
+    <p class="small social">
+      <a href="https://github.com/abhijeetgurle">GitHub</a>
+      <a href="https://www.linkedin.com/in/abhijeet-gurle-7b1286162/">LinkedIn</a>
+      <a href="/about">More about me →</a>
     </p>
   </section>
 
@@ -36,5 +42,6 @@ const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3
 
 <style>
   .intro p { font-size: 1.15rem; margin: 0; }
+  .intro .social { display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.9rem; }
   .grid { display: grid; gap: 1rem; }
 </style>

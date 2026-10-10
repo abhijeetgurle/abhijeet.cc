@@ -18,7 +18,7 @@ npm run check    # type-check
   ```yaml
   ---
   title: My post
-  description: One-line summary (used for SEO and RSS)
+  description: One-line summary (used for SEO and link previews)
   date: 2026-10-10
   tags: [astro, notes]
   draft: true        # optional: hidden in production, visible in `npm run dev`
