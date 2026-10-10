@@ -11,13 +11,13 @@ const { projects, showStack = false } = Astro.props;
 <ul>
   {projects.map(({ data }) => (
     <li>
-      <a class="title" href={data.demo ?? data.repo}>{data.title}<span aria-hidden="true"> ↗</span></a>
+      <a class="title" href={data.demo ?? data.repo} target="_blank" rel="noopener noreferrer">{data.title}<span aria-hidden="true"> ↗</span></a>
       <p>{data.description}</p>
       {(showStack || data.writeup) && (
         <p class="meta">
           {showStack && data.stack.length > 0 && <span>{data.stack.join(', ')}</span>}
-          {data.demo && data.repo && <a href={data.repo}>Source</a>}
-          {data.writeup && <a href={data.writeup}>Write-up</a>}
+          {data.demo && data.repo && <a href={data.repo} target="_blank" rel="noopener noreferrer">Source</a>}
+          {data.writeup && <a href={data.writeup} target="_blank" rel="noopener noreferrer">Write-up</a>}
         </p>
       )}
     </li>
