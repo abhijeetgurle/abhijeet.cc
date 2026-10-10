@@ -1,19 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectList from '../components/ProjectList.astro';
 import { getProjects } from '../utils';
 
 const projects = await getProjects();
 ---
 
 <Base title="Projects" description="Things I've built">
-  <h1>Projects</h1>
-  <p class="muted">Things I've built, am building, or have abandoned with dignity.</p>
-  <div class="grid">
-    {projects.map((project) => <ProjectCard project={project} />)}
-  </div>
+  <header class="page-header">
+    <h1>Projects</h1>
+    <p>Things I've built, am building, or have abandoned with dignity.</p>
+  </header>
+  <ProjectList projects={projects} showStack />
 </Base>
-
-<style>
-  .grid { display: grid; gap: 1rem; margin-top: 2rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
-</style>

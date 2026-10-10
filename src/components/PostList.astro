@@ -8,24 +8,26 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<ul>
-  {posts.map((post) => (
-    <li>
-      <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-      <time class="muted small" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-    </li>
-  ))}
-</ul>
+{posts.length === 0 ? (
+  <p class="muted">Nothing here yet. First posts are on the way.</p>
+) : (
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+      </li>
+    ))}
+  </ul>
+)}
 
 <style>
-  ul { list-style: none; padding: 0; margin: 0; }
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    padding: 0.5rem 0;
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+  li { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; }
+  time {
+    flex-shrink: 0;
+    font-size: 0.875rem;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
   }
-  a { text-decoration: none; }
-  time { white-space: nowrap; font-variant-numeric: tabular-nums; }
 </style>

@@ -1,49 +1,48 @@
 ---
 import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
 import PostList from '../components/PostList.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectList from '../components/ProjectList.astro';
 import { getPosts, getProjects } from '../utils';
 import { SITE } from '../consts';
 
 const posts = (await getPosts()).slice(0, 5);
-const featured = (await getProjects()).filter((p) => p.data.featured).slice(0, 3);
+const featured = (await getProjects()).filter((p) => p.data.featured);
 ---
 
 <Base>
-  <section class="intro">
-    <h1>Hi, I'm Abhijeet.</h1>
-    <p class="muted">
-      I'm a software engineer at <a href="https://www.akto.io">Akto</a>, working mostly on backend
-      systems. I like learning things by building them from scratch, and lately that has meant
-      building with LLMs. This is where I keep my writing and side projects.
-    </p>
-    <p class="small social">
-      <a href={SITE.socials.github}>GitHub</a>
-      <a href={SITE.socials.linkedin}>LinkedIn</a>
-      <a href={SITE.socials.twitter}>X</a>
-      <a href="/about">More about me →</a>
+  <section class="hero">
+    <h1>Abhijeet Gurle</h1>
+    <p class="role">Software engineer at <a href="https://www.akto.io">Akto</a></p>
+    <p class="bio">
+      I work mostly on backend systems and like learning things by building them from scratch.
+      Lately that has meant building with LLMs.
     </p>
   </section>
 
-  <section>
-    <h2>Recent writing</h2>
+  <Section title="Writing" more={posts.length > 0 ? { href: '/blog', label: 'All posts' } : undefined}>
     <PostList posts={posts} />
-    <p class="small"><a href="/blog">All posts →</a></p>
-  </section>
+  </Section>
 
-  {featured.length > 0 && (
-    <section>
-      <h2>Projects</h2>
-      <div class="grid">
-        {featured.map((project) => <ProjectCard project={project} />)}
-      </div>
-      <p class="small"><a href="/projects">All projects →</a></p>
-    </section>
-  )}
+  <Section title="Projects" more={{ href: '/projects', label: 'All projects' }}>
+    <ProjectList projects={featured} />
+  </Section>
+
+  <Section title="Elsewhere">
+    <ul class="links">
+      <li><a href={SITE.socials.github}>GitHub<span aria-hidden="true"> ↗</span></a></li>
+      <li><a href={SITE.socials.twitter}>X<span aria-hidden="true"> ↗</span></a></li>
+      <li><a href={SITE.socials.linkedin}>LinkedIn<span aria-hidden="true"> ↗</span></a></li>
+    </ul>
+  </Section>
 </Base>
 
 <style>
-  .intro p { font-size: 1.15rem; margin: 0; }
-  .intro .social { display: flex; gap: 1rem; margin-top: 1rem; font-size: 0.9rem; }
-  .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
+  .hero { margin-bottom: 4.5rem; }
+  .role { margin: 0.25rem 0 0; color: var(--muted); }
+  .role a { color: var(--fg); }
+  .role a:hover { color: var(--accent); }
+  .bio { margin: 1.5rem 0 0; max-width: 36rem; }
+  .links span { color: var(--faint); font-size: 0.85em; }
+  .links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 1.5rem; }
 </style>

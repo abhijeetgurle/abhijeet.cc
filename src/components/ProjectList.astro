@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+  showStack?: boolean;
+}
+const { projects, showStack = false } = Astro.props;
+---
+
+<ul>
+  {projects.map(({ data }) => (
+    <li>
+      <a class="title" href={data.demo ?? data.repo}>{data.title}<span aria-hidden="true"> ↗</span></a>
+      <p>{data.description}</p>
+      {(showStack || data.writeup) && (
+        <p class="meta">
+          {showStack && data.stack.length > 0 && <span>{data.stack.join(', ')}</span>}
+          {data.demo && data.repo && <a href={data.repo}>Source</a>}
+          {data.writeup && <a href={data.writeup}>Write-up</a>}
+        </p>
+      )}
+    </li>
+  ))}
+</ul>
+
+<style>
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.75rem; }
+  .title { font-weight: 500; }
+  .title span { color: var(--faint); font-size: 0.85em; }
+  p { margin: 0.2rem 0 0; color: var(--muted); }
+  .meta { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--faint); }
+  .meta a { color: var(--muted); }
+  .meta a:hover { color: var(--accent); }
+</style>

@@ -17,7 +17,9 @@ const { posts } = Astro.props;
 ---
 
 <Base title={`#${tag}`} description={`Posts tagged ${tag}`}>
-  <h1>#{tag}</h1>
+  <header class="page-header">
+    <h1>#{tag}</h1>
+    <p><a href="/blog">← All posts</a></p>
+  </header>
   <PostList posts={posts} />
-  <p class="small"><a href="/blog">← All posts</a></p>
 </Base>

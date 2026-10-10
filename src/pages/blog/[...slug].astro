@@ -15,18 +15,25 @@ const { title, description, date, updated, tags, draft } = post.data;
 
 <Base title={title} description={description} type="article">
   <article>
-    <header>
+    <header class="page-header">
       <h1>{title}</h1>
-      <p class="muted small">
+      <p class="small">
         <time datetime={date.toISOString()}>{formatDate(date)}</time>
-        {updated && <> · Updated {formatDate(updated)}</>}
-        · {readingTime(post.body)}
-        {draft && <> · <strong>Draft</strong></>}
+        {updated && <span> · Updated {formatDate(updated)}</span>}
+        <span> · {readingTime(post.body)}</span>
+        {draft && <span> · <strong>Draft</strong></span>}
       </p>
-      {tags.length > 0 && <p>{tags.map((tag) => <a class="tag" href={`/tags/${tag}/`}>{tag}</a>)}</p>}
+      {tags.length > 0 && (
+        <p class="tags">{tags.map((tag) => <a class="tag" href={`/tags/${tag}/`}>{tag}</a>)}</p>
+      )}
     </header>
     <div class="prose">
       <Content />
     </div>
+    <p class="back small"><a href="/blog">← All posts</a></p>
   </article>
 </Base>
+
+<style>
+  .back { margin-top: 4rem; color: var(--muted); }
+</style>
